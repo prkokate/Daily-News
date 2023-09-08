@@ -3,6 +3,7 @@ import Newsitem from './Newsitem';
 import Spinner from './Spinner';
 import InfiniteScroll from "react-infinite-scroll-component";
 import './Newsitem.css'
+require("dotenv").config();
 
 
 
@@ -35,7 +36,7 @@ export default class News extends Component {
       //the 'apikey' is YOUR UNIQUE key
       this.setState({loading:true});
       if(this.props.search===0){
-        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.categ}&apiKey=e4509d5d89db45dab1b3ee1e7cba6811&page=${this.state.page}&pageSize=${this.props.PageSize}`;
+        let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.categ}&apiKey=${process.env.API_KEY}&page=${this.state.page}&pageSize=${this.props.PageSize}`;
         let data = await fetch(url);               //Async + Await : ** We need to wait until complete data is fetched and 
         this.props.setProgress(50);
          let parsedData = await data.json(); 
